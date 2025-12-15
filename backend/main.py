@@ -3,7 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 from appointment_service import AppointmentService
 
-app = FastAPI()
+import os
+
+# Check if running on Vercel
+is_vercel = os.environ.get("VERCEL")
+
+app = FastAPI(root_path="/api" if is_vercel else "")
 
 # Allow CORS for frontend
 app.add_middleware(
