@@ -1,7 +1,10 @@
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
-from appointment_service import AppointmentService
+try:
+    from .appointment_service import AppointmentService
+except ImportError:
+    from appointment_service import AppointmentService
 
 import os
 
