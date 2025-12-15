@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 
 // --- API Service Simulation ---
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 const fetchAppointments = async (filters = {}) => {
     try {
