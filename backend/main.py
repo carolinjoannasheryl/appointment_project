@@ -17,12 +17,27 @@ app.add_middleware(
 service = AppointmentService()
 
 @app.get("/appointments")
-def get_appointments(date: Optional[str] = None, status: Optional[str] = None):
+def get_appointments(
+    date: Optional[str] = None, 
+    status: Optional[str] = None,
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
+    doctor_name: Optional[str] = None,
+    search_query: Optional[str] = None
+):
     filters = {}
     if date:
         filters["date"] = date
     if status:
         filters["status"] = status
+    if start_date:
+        filters["start_date"] = start_date
+    if end_date:
+        filters["end_date"] = end_date
+    if doctor_name:
+        filters["doctor_name"] = doctor_name
+    if search_query:
+        filters["search_query"] = search_query
     return service.get_appointments(filters)
 
 @app.patch("/appointments/{id}/status")
