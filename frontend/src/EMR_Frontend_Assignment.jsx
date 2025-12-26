@@ -13,7 +13,9 @@ const fetchAppointments = async (filters = {}) => {
     try {
         const params = new URLSearchParams(filters);
         const response = await fetch(`${API_BASE_URL}/appointments?${params}`);
+        console.log("Success");
         if (!response.ok) throw new Error('Failed to fetch appointments');
+        
         return await response.json();
     } catch (error) {
         console.error("API Error:", error);
